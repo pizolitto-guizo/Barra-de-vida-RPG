@@ -1,6 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #222;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
     color: #fff;
     margin: 0;
     padding: 20px;
@@ -8,69 +8,164 @@ body {
 
 h1 {
     text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 8px #000a;
 }
 
 #enemies-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 24px;
     margin-bottom: 20px;
+    justify-content: center;
 }
 
 .enemy {
-    background: #333;
-    border-radius: 8px;
-    padding: 16px;
-    min-width: 250px;
-    box-shadow: 0 2px 8px #0004;
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
+    border-radius: 16px;
+    padding: 24px 18px 18px 18px;
+    min-width: 270px;
+    box-shadow: 0 4px 16px #0007;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 2px solid #4caf50;
+    position: relative;
+    transition: border-color 0.3s;
+}
+.enemy:hover {
+    border-color: #ff9800;
 }
 
-.enemy-name, .vida-input {
-    margin-bottom: 8px;
-    padding: 4px;
-    border-radius: 4px;
-    border: none;
-    font-size: 1em;
+.enemy-name, .vida-input, .vida-max-input {
+    margin-bottom: 10px;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    font-size: 1.1em;
     width: 80%;
     text-align: center;
+    background: #222;
+    color: #fff;
+    box-shadow: 0 2px 6px #0003;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.enemy-name:focus, .vida-input:focus, .vida-max-input:focus {
+    border-color: #4caf50;
+}
+
+.vida-input {
+    /* Adiciona placeholder visível */
+    position: relative;
+}
+.vida-input::placeholder {
+    color: #ff9800;
+    opacity: 1;
+    font-weight: bold;
+    font-size: 1em;
 }
 
 .life-bar {
-    width: 80%;
-    height: 28px;
-    background: #555;
-    border-radius: 14px;
-    margin-bottom: 8px;
+    width: 90%;
+    height: 32px;
+    background: #222;
+    border-radius: 16px;
+    margin-bottom: 10px;
     overflow: hidden;
     position: relative;
+    box-shadow: 0 2px 8px #0005;
+    border: 2px solid #555;
 }
 
 .life-bar-inner {
     height: 100%;
-    background: #4caf50;
-    color: #fff;
+    background: linear-gradient(90deg, #4caf50 0%, #ffeb3b 100%);
+    color: #222;
     text-align: center;
-    line-height: 28px;
+    line-height: 32px;
     font-weight: bold;
-    border-radius: 14px 0 0 14px;
+    font-size: 1.1em;
+    border-radius: 16px 0 0 16px;
     transition: width 0.3s, background 0.3s;
+    box-shadow: 0 2px 8px #4caf5060;
+}
+
+.life-bar-inner {
+    background: linear-gradient(90deg, #4caf50 0%, #ff9800 100%);
+}
+
+.life-bar-inner[style*='#ff9800'] {
+    background: linear-gradient(90deg, #ff9800 0%, #b71c1c 100%);
+    color: #fff;
+}
+
+.life-bar-inner[style*='#b71c1c'] {
+    background: linear-gradient(90deg, #b71c1c 0%, #222 100%);
+    color: #fff;
+}
+
+.dano-total-bar {
+    width: 90%;
+    background: #333;
+    color: #ff9800;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 4px 0;
+    margin-bottom: 10px;
+    text-align: center;
+    box-shadow: 0 2px 6px #0003;
+    font-size: 1em;
+}
+
+.dano-input, .cura-input {
+    margin-bottom: 8px;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    font-size: 1em;
+    width: 70px;
+    text-align: center;
+    background: #222;
+    color: #fff;
+    box-shadow: 0 2px 6px #0003;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.dano-input:focus, .cura-input:focus {
+    border-color: #ff9800;
 }
 
 button {
     margin: 4px;
-    padding: 6px 12px;
+    padding: 8px 16px;
     border: none;
-    border-radius: 4px;
-    background: #1976d2;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #1976d2 0%, #4caf50 100%);
     color: #fff;
-    font-size: 1em;
+    font-size: 1.1em;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s;
+    box-shadow: 0 2px 8px #0003;
+    transition: background 0.2s, transform 0.2s;
+}
+button:hover {
+    background: linear-gradient(90deg, #ff9800 0%, #b71c1c 100%);
+    transform: scale(1.07);
 }
 
-button:hover {
-    background: #1565c0;
+#add-enemy {
+    display: block;
+    margin: 0 auto 32px auto;
+    padding: 12px 32px;
+    font-size: 1.2em;
+    background: linear-gradient(90deg, #ff9800 0%, #4caf50 100%);
+    border-radius: 12px;
+    box-shadow: 0 2px 12px #0005;
+    font-weight: bold;
+}
+#add-enemy:hover {
+    background: linear-gradient(90deg, #1976d2 0%, #b71c1c 100%);
 }
